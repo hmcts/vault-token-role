@@ -1,0 +1,6 @@
+---
+
+vault_token_role_token: ""
+vault_token_role_user: ""
+vault_token_role_create_user: false
+vault_token_role_path: ""

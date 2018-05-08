@@ -1,0 +1,37 @@
+---
+
+- name: "Ensure user exists if vault_token_role_create_user is true"
+  user:
+    name: "{{ vault_token_role_user }}"
+    state: present
+  when: vault_token_role_user != "" and vault_token_role_create_user
+
+- name: "Ensure group exists if vault_token_role_create_user is true"
+  group:
+    name: "{{ vault_token_role_user }}"
+    state: present
+  when: vault_token_role_user != "" and vault_token_role_create_user
+
+- name: "Create ~{{ vault_token_role_user }}/.vault-token"
+  copy:
+    dest: "~{{ vault_token_role_user }}/.vault-token"
+    content: "{{ vault_token_role_token }}"
+    owner: "{{ vault_token_role_user }}"
+    mode: "0600"
+  when: vault_token_role_token != "" and vault_token_role_user != ""
+
+- name: "Create directory for {{ vault_token_role_path }} ({{ vault_token_role_path | dirname }}) if needed"
+  file:
+    name: "{{ vault_token_role_path | dirname }}"
+    state: directory
+    owner: "{{ vault_token_role_user }}"
+    group: "{{ vault_token_role_user }}"
+  when: vault_token_role_path != ""
+
+- name: "Create {{ vault_token_role_path }}"
+  copy:
+    dest: "{{ vault_token_role_path }}"
+    content: "{{ vault_token_role_token }}"
+    owner: "{{ vault_token_role_user }}"
+    mode: "0600"
+  when: vault_token_role_token != "" and vault_token_role_user != "" and vault_token_role_path != ""

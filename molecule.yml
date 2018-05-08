@@ -1,0 +1,13 @@
+---
+driver:
+  name: docker
+docker:
+  containers:
+    - name: vault-token-role
+      image: centos/systemd
+      image_version: latest
+      privileged: True
+verifier:
+  name: testinfra
+ansible:
+  extra_vars: vault_token_role_token="abc" vault_token_role_user="testuser" vault_token_role_create_user="true"
