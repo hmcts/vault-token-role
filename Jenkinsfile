@@ -41,11 +41,11 @@ node {
         }
 
         // Role known not to be idempotent due to random passwords
-        stage('Check idempotent') {
-          sh '''
-          molecule idempotence
-        '''
-        }
+//      stage('Check idempotent') {
+//        sh '''
+//        molecule idempotence
+//      '''
+//      }
 
       }
 
