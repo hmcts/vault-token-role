@@ -1,4 +1,9 @@
-
+galaxy_info:
+  author: HMCTS Reform
+  description: Bring vault token to user
+  company: HMCTS Reform
   license: MIT
 
   min_ansible_version: 1.2
+
+  galaxy_tags: []
